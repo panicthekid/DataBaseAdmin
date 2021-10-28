@@ -1,4 +1,5 @@
 # DataBaseAdmin
+## Diseñado y programado por R. Akzayakatl Colín Hernández
 Aplicación de escritorio hecha con python para administrar bases de datos.
 Previsualización de la aplicación corriendo.
 ![Captura de pantalla de Microsoft Game DVR - MainWindow](https://user-images.githubusercontent.com/19199917/139344003-dce1361c-1dfd-4947-b3f3-4a8e86cf2e09.png)
