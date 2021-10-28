@@ -58,11 +58,11 @@ class Backup(QDialog):
         self.parent().show()
         self.close()
     def listaDB(self):
-        alo = ssh.execute_command("mysql -u root --password=12345678 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=******* -e 'show databases' ")
         self.txtBd.setText(alo)
         
     def haceBackUp(self):
-        ssh.execute_command(" mysqldump --user=root --password=12345678 --lock-tables --all-databases > /media/backups/allDB$(date '+%Y-%m-%d-%H:%M').sql")
+        ssh.execute_command(" mysqldump --user=root --password=******* --lock-tables --all-databases > /media/backups/allDB$(date '+%Y-%m-%d-%H:%M').sql")
         self.comBack.setText("Guardado con exito con el nombre: allDB-FECHA-HORA.sql en la ruta /media/backups")
         com = ssh.execute_command("ls -m /media/backups")
         self.txtBack.setText(com)
@@ -86,13 +86,13 @@ class Monitoreo(QDialog):
         stat = ssh.execute_command("systemctl status mariadb |grep active")
         self.txtStatus.setText(stat)
     def users(self):
-        users = ssh.execute_command("mysql -u root --password=12345678 -e 'select user, host from mysql.user' ")
+        users = ssh.execute_command("mysql -u root --password=******** -e 'select user, host from mysql.user' ")
         self.txtUsers.setText(users)
     def grants(self):
-        grants = ssh.execute_command('''mysql -u root --password=12345678 -e "select distinct concat('SHOW GRANTS FOR ', QUOTE(user), '@', QUOTE(host), ';') as query from mysql.user;"''')
+        grants = ssh.execute_command('''mysql -u root --password=******* -e "select distinct concat('SHOW GRANTS FOR ', QUOTE(user), '@', QUOTE(host), ';') as query from mysql.user;"''')
         self.txtGrants.setText(grants)
     def binlogs(self):
-        binlogs = ssh.execute_command('mysql -u root --password=12345678 -e "SHOW BINLOG EVENTS IN "mysql-bin.000001""')
+        binlogs = ssh.execute_command('mysql -u root --password=******* -e "SHOW BINLOG EVENTS IN "mysql-bin.000001""')
         self.txtBinlogs.setText(binlogs)
 
 class Replicas(QDialog):
@@ -133,32 +133,32 @@ class Replicas1(QDialog):
         self.close()
         
     def conexion1(self):
-        time = ssh.open_connection("192.168.0.154", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase1.setText(alo)
     def conexion2 (self):
-        time = ssh.open_connection("192.168.0.120", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase2.setText(alo)
 
     def slave1(self):
-        time = ssh.open_connection("192.168.0.138", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=******* -e 'show databases' ")
         self.txtBase3.setText(alo)
 
         
@@ -177,27 +177,27 @@ class Replicas2(QDialog):
         self.close()
         
     def conexion1(self):
-        time = ssh.open_connection("192.168.0.152", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase1.setText(alo)
     def conexion2 (self):
-        time = ssh.open_connection("192.168.0.153", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase2.setText(alo)
     
     def slave1(self):
-        time = ssh.open_connection("192.168.0.173", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
@@ -205,13 +205,13 @@ class Replicas2(QDialog):
         alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
         self.txtSlave1.setText(alo)
     def slave2 (self):
-        time = ssh.open_connection("192.168.0.181", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtSlave2.setText(alo)
     
                 
@@ -229,58 +229,58 @@ class Replicas3(QDialog):
         self.close()
         
     def conexion1(self):
-        time = ssh.open_connection("192.168.0.101", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase3.setText(alo)
     def conexion2 (self):
-        time = ssh.open_connection("192.168.0.140", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase3.setText(alo)
     def conexion3 (self):
-        time = ssh.open_connection("192.168.0.108", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=******* -e 'show databases' ")
         self.txtBase3.setText(alo)
     def slave1(self):
-        time = ssh.open_connection("192.168.0.119", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=******* -e 'show databases' ")
         self.txtBase3.setText(alo)
     def slave2 (self):
-        time = ssh.open_connection("192.168.0.183", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase3.setText(alo)
     def slave3 (self):
-        time = ssh.open_connection("192.168.0.161", timeout=None)
-        ssh.login("root", "123456")
+        time = ssh.open_connection("192.168.x.x", timeout=None)
+        ssh.login("root", "******")
         #if time == 1:
         #     self.txtConectado2.setText("Conexion establecida correctamente")
         #else :
         #     self.txtConectado2.setText("Conexion no establecida")
-        alo = ssh.execute_command("mysql -u root --password=centos_123 -e 'show databases' ")
+        alo = ssh.execute_command("mysql -u root --password=****** -e 'show databases' ")
         self.txtBase3.setText(alo)
         
         
